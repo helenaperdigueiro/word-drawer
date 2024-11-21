@@ -22,3 +22,7 @@ body {
 #selected-word {
     height: 1rem;
 }
+
+footer {
+    text-align: center;
+}
