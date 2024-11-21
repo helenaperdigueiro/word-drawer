@@ -1,0 +1,24 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+body {
+    display: grid;
+    justify-items: center;
+}
+
+#container {
+    display: grid;
+    justify-items: center;
+}
+
+#btn-submit {
+    cursor: pointer;
+}
+
+#selected-word {
+    height: 1rem;
+}
