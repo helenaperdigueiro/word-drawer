@@ -3,6 +3,7 @@
     const init = () => {
         var _a, _b, _c, _d;
         const easyLevel = {
+            enabled: true,
             nouns: ["casa", "carro", "pessoa", "animal", "fruta", "flor", "árvore", "rio", "montanha", "praia",
                 "mãe", "pai", "irmão", "irmã", "amigo", "escola", "trabalho", "cidade", "país", "mundo",
                 "bola", "quadra", "futebol", "basquete", "vôlei", "tenis", "ciclismo", "natação", "corrida",
@@ -17,6 +18,7 @@
                 "construir", "destruir", "criar", "melhorar", "piorar", "aumentar", "diminuir"]
         };
         const mediumLevel = {
+            enabled: true,
             nouns: ["edifício", "aeroporto", "hospital", "biblioteca", "museu", "parque", "jardim", "lago",
                 "cachoeira", "penhasco", "montanha-russa", "estádio", "ginásio", "auditório",
                 "laboratório", "fábrica", "escritório", "loja", "restaurante", "hotel", "resort",
@@ -30,6 +32,7 @@
                 "inovar", "transformar", "revolucionar", "evoluir", "simplificar", "complicar"]
         };
         const hardLevel = {
+            enabled: true,
             nouns: ["arquitetura", "ecossistema", "galáxia", "fenômeno", "teoria", "experiência",
                 "conceito", "estrutura", "processo", "sistema", "modelo", "método", "técnica",
                 "tecnologia", "ciência", "filosofia", "história", "geografia", "economia", "política"],
