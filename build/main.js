@@ -1,7 +1,7 @@
 "use strict";
 (function () {
     const init = () => {
-        var _a;
+        var _a, _b, _c, _d;
         const easyLevel = {
             nouns: ["casa", "carro", "pessoa", "animal", "fruta", "flor", "árvore", "rio", "montanha", "praia",
                 "mãe", "pai", "irmão", "irmã", "amigo", "escola", "trabalho", "cidade", "país", "mundo",
@@ -38,13 +38,22 @@
                 "alto", "baixo", "amplo", "estreito", "profundo", "superficial", "interessante"],
             verbs: ["analizar", "sintetizar", "argumentar", "deduzir", "induzir", "criar", "inovar",
                 "transformar", "revolucionar", "evoluir", "simplificar", "complicar", "generalizar",
-                "especializar", "abstrair", "concretizar", "relacionar", "comparar", "contrastar"]
+                "inspecionar", "abstrair", "concretizar", "relacionar", "comparar", "contrastar"]
         };
-        const words = [
-            ...easyLevel.nouns, ...easyLevel.adjectives, ...easyLevel.verbs,
-            ...mediumLevel.nouns, ...mediumLevel.adjectives, ...mediumLevel.verbs,
-            ...hardLevel.nouns, ...hardLevel.adjectives, ...hardLevel.verbs
-        ];
+        let words = [];
+        const selectWords = () => {
+            words = [];
+            if (easyLevel.enabled) {
+                words.push(...easyLevel.nouns, ...easyLevel.adjectives, ...easyLevel.verbs);
+            }
+            if (mediumLevel.enabled) {
+                words.push(...mediumLevel.nouns, ...mediumLevel.adjectives, ...mediumLevel.verbs);
+            }
+            if (hardLevel.enabled) {
+                words.push(...hardLevel.nouns, ...hardLevel.adjectives, ...hardLevel.verbs);
+            }
+        };
+        selectWords();
         let shuffledWords = [];
         const shuffleWords = () => {
             const wordsCopy = [...words];
@@ -58,6 +67,18 @@
         (_a = document.getElementById("form")) === null || _a === void 0 ? void 0 : _a.addEventListener("submit", (event) => {
             event.preventDefault();
             drawWord();
+        });
+        (_b = document.getElementById("cb-level-easy")) === null || _b === void 0 ? void 0 : _b.addEventListener("change", () => {
+            easyLevel.enabled = !easyLevel.enabled;
+            selectWords();
+        });
+        (_c = document.getElementById("cb-level-medium")) === null || _c === void 0 ? void 0 : _c.addEventListener("change", () => {
+            mediumLevel.enabled = !mediumLevel.enabled;
+            selectWords();
+        });
+        (_d = document.getElementById("cb-level-hard")) === null || _d === void 0 ? void 0 : _d.addEventListener("change", () => {
+            hardLevel.enabled = !hardLevel.enabled;
+            selectWords();
         });
         const drawWord = () => {
             let wordContainer = document.getElementById("selected-word");

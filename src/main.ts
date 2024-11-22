@@ -2,6 +2,7 @@
 
     const init = () => {
         const easyLevel = {
+            enabled: true,
             nouns: ["casa", "carro", "pessoa", "animal", "fruta", "flor", "árvore", "rio", "montanha", "praia",
                 "mãe", "pai", "irmão", "irmã", "amigo", "escola", "trabalho", "cidade", "país", "mundo",
                 "bola", "quadra", "futebol", "basquete", "vôlei", "tenis", "ciclismo", "natação", "corrida",
@@ -17,6 +18,7 @@
         }
 
         const mediumLevel = {
+            enabled: true,
             nouns: ["edifício", "aeroporto", "hospital", "biblioteca", "museu", "parque", "jardim", "lago",
                 "cachoeira", "penhasco", "montanha-russa", "estádio", "ginásio", "auditório",
                 "laboratório", "fábrica", "escritório", "loja", "restaurante", "hotel", "resort",
@@ -31,6 +33,7 @@
         }
 
         const hardLevel = {
+            enabled: true,
             nouns: ["arquitetura", "ecossistema", "galáxia", "fenômeno", "teoria", "experiência",
                 "conceito", "estrutura", "processo", "sistema", "modelo", "método", "técnica",
                 "tecnologia", "ciência", "filosofia", "história", "geografia", "economia", "política"],
@@ -39,14 +42,25 @@
                 "alto", "baixo", "amplo", "estreito", "profundo", "superficial", "interessante"],
             verbs: ["analizar", "sintetizar", "argumentar", "deduzir", "induzir", "criar", "inovar",
                 "transformar", "revolucionar", "evoluir", "simplificar", "complicar", "generalizar",
-                "especializar", "abstrair", "concretizar", "relacionar", "comparar", "contrastar"]
+                "inspecionar", "abstrair", "concretizar", "relacionar", "comparar", "contrastar"]
         }
 
-        const words: readonly string[] = [
-            ...easyLevel.nouns, ...easyLevel.adjectives, ...easyLevel.verbs,
-            ...mediumLevel.nouns, ...mediumLevel.adjectives, ...mediumLevel.verbs,
-            ...hardLevel.nouns, ...hardLevel.adjectives, ...hardLevel.verbs
-        ];
+        let words: string[] = [];
+
+        const selectWords = () => {
+            words = [];
+            if (easyLevel.enabled) {
+                words.push(...easyLevel.nouns, ...easyLevel.adjectives, ...easyLevel.verbs)
+            }
+            if (mediumLevel.enabled) {
+                words.push(...mediumLevel.nouns, ...mediumLevel.adjectives, ...mediumLevel.verbs)
+            }
+            if (hardLevel.enabled) {
+                words.push(...hardLevel.nouns, ...hardLevel.adjectives, ...hardLevel.verbs)
+            }
+        }
+
+        selectWords();
 
         let shuffledWords: string[] = [];
 
@@ -64,6 +78,21 @@
         document.getElementById("form")?.addEventListener("submit", (event) => {
             event.preventDefault();
             drawWord();
+        });
+
+        document.getElementById("cb-level-easy")?.addEventListener("change", () => {
+            easyLevel.enabled = !easyLevel.enabled;
+            selectWords();
+        });
+
+        document.getElementById("cb-level-medium")?.addEventListener("change", () => {
+            mediumLevel.enabled = !mediumLevel.enabled;
+            selectWords();
+        });
+
+        document.getElementById("cb-level-hard")?.addEventListener("change", () => {
+            hardLevel.enabled = !hardLevel.enabled;
+            selectWords();
         });
 
         const drawWord = () => {
